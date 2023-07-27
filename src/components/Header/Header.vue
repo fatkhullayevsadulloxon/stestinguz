@@ -5,9 +5,9 @@
             <div>
                 <div class="flex items-center">
                     <button @click="() => { isOpen = !isOpen }" class="hidden nav-hamburger">
-                        <img v-if="isOpen === false" src="../../assets/img/hamburger-menu.svg" alt="" width="40"
+                        <img class="nav-hamburger-img" v-if="isOpen === false" src="../../assets/img/hamburger-menu.svg" alt="" width="40"
                             height="40">
-                        <img v-if="isOpen === true" src="../../assets/img/close.svg" alt="" width="40" height="40">
+                        <img class="nav-hamburger-img" v-if="isOpen === true" src="../../assets/img/close.svg" alt="" width="40" height="40">
                     </button>
                     <a href="#" class="sm:ms-10 md:mb-2">
                         <img class="header__logo" :src="`${logo}`" alt="" width="130" height="28">
@@ -34,17 +34,17 @@
                                     <ul class="dropdown-menu absolute hidden text-gray-700">
                                         <li>
                                             <router-link
-                                                class="rounded-t bg-gray-200 hover:text-sky-700 transition-all py-2 px-4 block whitespace-no-wrap"
+                                                class="rounded-t bg-white-200 hover:text-sky-700 transition-all py-2 px-4 block whitespace-no-wrap"
                                                 to="/uz">O'zbekcha</router-link>
                                         </li>
                                         <li>
                                             <router-link
-                                                class="rounded-t bg-gray-200 hover:text-sky-700 transition-all py-2 px-4 block whitespace-no-wrap"
+                                                class="rounded-t bg-white-200 hover:text-sky-700 transition-all py-2 px-4 block whitespace-no-wrap"
                                                 to="/ru">Русский</router-link>
                                         </li>
                                         <li>
                                             <router-link
-                                                class="rounded-t bg-gray-200 hover:text-sky-700 transition-all py-2 px-4 block whitespace-no-wrap"
+                                                class="rounded-t bg-white-200 hover:text-sky-700 transition-all py-2 px-4 block whitespace-no-wrap"
                                                 to="/en">English</router-link>
                                         </li>
                                     </ul>
@@ -71,20 +71,20 @@
                                     <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                 </svg>
                             </button>
-                            <ul class="dropdown-menu absolute hidden text-gray-700">
+                            <ul class="dropdown-menu absolute hidden text-gray-700 shadow-lg">
                                 <li>
                                     <router-link
-                                        class="rounded-t bg-gray-200 hover:text-sky-700 transition-all py-2 px-4 block whitespace-no-wrap"
+                                        class="rounded-t bg-white-200 hover:text-sky-700 transition-all py-2 px-4 block whitespace-no-wrap"
                                         to="/uz">O'zbekcha</router-link>
                                 </li>
                                 <li>
                                     <router-link
-                                        class="rounded-t bg-gray-200 hover:text-sky-700 transition-all py-2 px-4 block whitespace-no-wrap"
+                                        class="rounded-t bg-white-200 hover:text-sky-700 transition-all py-2 px-4 block whitespace-no-wrap"
                                         to="/ru">Русский</router-link>
                                 </li>
                                 <li>
                                     <router-link
-                                        class="rounded-t bg-gray-200 hover:text-sky-700 transition-all py-2 px-4 block whitespace-no-wrap"
+                                        class="rounded-t bg-white-200 hover:text-sky-700 transition-all py-2 px-4 block whitespace-no-wrap"
                                         to="/en">English</router-link>
                                 </li>
                             </ul>
@@ -270,6 +270,10 @@ export default {
 @media only screen and (max-width: 375px) {
     .header__btn {
         padding: 8px 28px !important;
+    }
+    .nav-hamburger-img{
+        width: 30px !important;
+        height: 30px !important;
     }
 }
 </style>
