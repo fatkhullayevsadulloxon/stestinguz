@@ -95,8 +95,8 @@
                         </li>
                     </ul>
                 </nav>
-                <router-link class="header__btn" to="/login">
-                    <PrimaryButton>
+                 <router-link to="/login">
+                    <PrimaryButton >
                         Kirish
                     </PrimaryButton>
                 </router-link>
@@ -109,7 +109,7 @@
 
 import { RouterLink, RouterView } from 'vue-router';
 import axios from "axios"
-import PrimaryButton from '../../ui-components/PrimaryButton.vue';
+import PrimaryButton from "../../ui-components/PrimaryButton.vue";
 
 export default {
     props: {

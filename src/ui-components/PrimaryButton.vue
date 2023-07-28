@@ -10,16 +10,16 @@ export default {
 </script>
 <style>
 .header__btn {
-    padding: 12px 65px;
-    background-color: #4f95ff;
-    color: white;
-    transition: all 0.4s;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
+    padding: 12px 65px !important;
+    background-color: #4f95ff !important;
+    color: white !important;
+    transition: all 0.4s !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 500 !important;
 }
 
 .header__btn:hover {
-    background-color: #007bff;
-    transition: all 0.4s
+    background-color: #007bff !important;
+    transition: all 0.4s !important
 }
 </style>
