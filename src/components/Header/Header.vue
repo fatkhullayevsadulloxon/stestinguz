@@ -1,6 +1,6 @@
 <template>
     <div>
-        <header class="header shadow-md bg-white">
+        <header class="header bg-white shadow-md">
             <div class="container flex items-center justify-between">
                 <!-- RESPONSIVE -->
                 <div>
@@ -96,7 +96,9 @@
                     </ul>
                 </nav>
                 <router-link class="header__btn" to="/login">
-                    Kirish
+                    <PrimaryButton>
+                        Kirish
+                    </PrimaryButton>
                 </router-link>
             </div>
         </header>
@@ -107,6 +109,7 @@
 
 import { RouterLink, RouterView } from 'vue-router';
 import axios from "axios"
+import PrimaryButton from '../../ui-components/PrimaryButton.vue';
 
 export default {
     props: {
@@ -122,8 +125,9 @@ export default {
     data() {
         return {
             isOpen: false
-        }
+        };
     },
+    components: { PrimaryButton }
 }
 </script>
 <style scoped>
@@ -146,13 +150,10 @@ export default {
 .header {
     z-index: 5;
     display: flex;
-    flex-wrap: wrap;
-    margin-left: -10px;
-    margin-right: -10px;
     padding: 20px 0px;
     position: fixed;
     top: 0;
-    width: 100%;
+    width: 100vw !important;
 }
 
 .list {
@@ -249,6 +250,7 @@ export default {
 }
 
 @media only screen and (max-width: 1020px) {
+
     .nav-hamburger {
         display: block
     }
@@ -277,6 +279,12 @@ export default {
 @media only screen and (max-width: 640px) {
     .header__logo {
         margin-left: 30px !important
+    }
+}
+
+@media only screen and (max-width: 445px) {
+    .header{
+        width: 445px !important
     }
 }
 

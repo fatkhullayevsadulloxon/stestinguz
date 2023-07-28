@@ -2,8 +2,8 @@
     <section class="hero">
         <div class="container hero__container flex items-start">
             <div class="hero__left">
-                <img class="absolute ms-20" src="https://stesting.uz/wrap1.png" alt="">
-                <h3 class="hero__heading relative z-2	">{{ registrations.title }}</h3>
+                <img class="absolute ms-20 hero__warp" src="https://stesting.uz/wrap1.png" alt="">
+                <h3 class="hero__heading relative z-2">{{ registrations.title }}</h3>
                 <p v-html="registrations.description" class="hero__desc opacity-75 mb-8 "></p>
                 <router-link class="hero__btn text-white" to="/uz/tutorials">
                     Video yo'riqnoma
@@ -106,6 +106,16 @@ export default {
 
     .container {
         width: 450px !important
+    }
+
+    .hero__warp{
+        display: none
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .hero__heading {
+        font-size: 32px !important
     }
 }
 
