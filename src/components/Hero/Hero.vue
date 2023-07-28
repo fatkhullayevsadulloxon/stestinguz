@@ -29,7 +29,7 @@ export default {
 /* HERO */
 .hero {
     padding-top: 200px !important;
-    /* background-image: url("https://stesting.uz/stestinglandingbg.png"); */
+    background-image: url("https://stesting.uz/stestinglandingbg.png");
     background-repeat: no-repeat;
     background-size: cover;
 }

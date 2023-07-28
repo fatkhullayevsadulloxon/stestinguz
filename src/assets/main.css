@@ -7,9 +7,9 @@
 }
 
 .container {
-  width: 1124px;
-  margin: 0 auto;
-  padding: 0 20px;
+  width: 1124px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
 }
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
