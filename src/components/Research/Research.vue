@@ -8,7 +8,7 @@
                     <p class="research-span 2xl:block xl:block lg:block md:block z-10 sm:hidden">Tadqiqotlar</p>
                     <p class="research-span z-10 2xl:hidden xl:hidden lg:hidden md:hidden sm:block sm:py-5 research_none">So'ngi tadqiqotlar</p>
                 </div>
-                <PrimaryButton>
+                <PrimaryButton to="/uz/news">
                     Barcha Tadqiqotlar
                 </PrimaryButton>
             </div>

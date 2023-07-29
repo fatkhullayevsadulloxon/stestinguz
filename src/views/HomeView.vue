@@ -4,6 +4,7 @@
         <about :short_description="short_description"/>
         <stastik :statistics="statistics"/>
         <research :research="research"/>
+        <video-lesson :main_video="main_video"/>
   </div>
 </template>
 <script>
@@ -13,20 +14,23 @@ import Hero from "../components/Hero/Hero.vue";
 import axios from "axios";
 import Stastik from "../components/Statistik/Stastik.vue";
 import Research from "../components/Research/Research.vue";
+import VideoLesson from "../components/VideoLesson/VideoLesson.vue";
 
 export default {
   components: {
     Hero,
     About,
     Stastik,
-    Research
+    Research,
+    VideoLesson
 },
    data() {
     return {
       registrations: {},
       statistics: {},
       short_description: {},
-      research: []
+      research: [],
+      main_video: {}
     }
   },
   methods: {
@@ -39,6 +43,7 @@ export default {
         })       
         this.registrations = data.registration  
         this.short_description = data.short_description
+        this.main_video = data.main_video
         const dataArr = data.research
         const newArr = dataArr.map(item => ({
           id: item.id,
