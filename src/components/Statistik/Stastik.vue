@@ -71,7 +71,7 @@ export default {
     color: #161c27 !important;
     text-align: center !important;
     font-weight: 400 !important;
-    margin-top: 5px !important;
+    /* margin-top: 5px !important; */
 }
 
 /* STATISTIK SECTION END */
