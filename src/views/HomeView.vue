@@ -3,7 +3,7 @@
         <hero :registrations="registrations"/>
         <about :short_description="short_description"/>
         <stastik :statistics="statistics"/>
-        <!-- <research/> -->
+        <research :research="research"/>
   </div>
 </template>
 <script>
@@ -26,6 +26,7 @@ export default {
       registrations: {},
       statistics: {},
       short_description: {},
+      research: []
     }
   },
   methods: {
@@ -37,7 +38,17 @@ export default {
           },
         })       
         this.registrations = data.registration  
-        this.short_description = data.short_description  
+        this.short_description = data.short_description
+        const dataArr = data.research
+        const newArr = dataArr.map(item => ({
+          id: item.id,
+          title: item.title,
+          description: item.description,
+          image_url: item.image_url,
+          views: item.views,
+          date: '2021-09-04'
+        }))
+        this.research = newArr
         console.log(this.statistics);
       } catch (error) {
         console.log(error);

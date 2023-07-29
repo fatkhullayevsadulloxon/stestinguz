@@ -67,6 +67,16 @@ export default {
     margin-left: 120px
 }
 
+@media only screen and (max-width: 1020px) {
+    .about__heading{
+        font-size: 26px !important; 
+    }
+
+    .about__desc{
+        font-size: 14px
+    }
+}
+
 @media only screen and (max-width: 770px) {
     .about__container{
         display: block

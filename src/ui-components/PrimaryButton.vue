@@ -19,7 +19,7 @@ export default {
 }
 
 .header__btn:hover {
-    background-color: #007bff !important;
+    background-color: #0a6dd6 !important;
     transition: all 0.4s !important
 }
 </style>

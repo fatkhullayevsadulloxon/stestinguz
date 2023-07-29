@@ -78,12 +78,10 @@ export default {
 
 /* RESPONSIVE */
 
-@media only screen and (max-width: 770px) {
-    .statistik__container {
+@media only screen and (max-width: 1020px) {
+    .statistik__container{
         display: block !important;
-        margin: 0 auto !important;
-        background-color: transparent !important;
-        background-image: none !important
+        margin: 0 auto
     }
 
     .location {
@@ -94,6 +92,13 @@ export default {
         width: 500px !important;
         margin: 0 auto !important;
         margin-top: 30px !important;
+    }
+}
+
+@media only screen and (max-width: 770px) {
+    .statistik__container {
+        background-color: transparent !important;
+        background-image: none !important
     }
 }
 
