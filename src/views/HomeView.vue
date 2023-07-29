@@ -1,7 +1,9 @@
 <template>
   <div class="">
         <hero :registrations="registrations"/>
-        <about :statistics="statistics" :short_description="short_description"/>
+        <about :short_description="short_description"/>
+        <stastik :statistics="statistics"/>
+        <!-- <research/> -->
   </div>
 </template>
 <script>
@@ -9,11 +11,15 @@
 import About from "../components/About/About.vue";
 import Hero from "../components/Hero/Hero.vue";
 import axios from "axios";
+import Stastik from "../components/Statistik/Stastik.vue";
+import Research from "../components/Research/Research.vue";
 
 export default {
   components: {
     Hero,
-    About
+    About,
+    Stastik,
+    Research
 },
    data() {
     return {
@@ -31,9 +37,21 @@ export default {
           },
         })       
         this.registrations = data.registration  
-        this.statistics = data.statistics  
         this.short_description = data.short_description  
         console.log(this.statistics);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async fetchStatistik() {
+      try {
+        const {data}  = await axios.get('https://api.stesting.uz/api/v1/stat/top/', {
+          headers: {
+            'Accept-Language': 'uz'
+          },
+        })       
+        this.statistics = data  
+        // console.log(this.statistics);
       } catch (error) {
         console.log(error);
       }
@@ -41,6 +59,7 @@ export default {
   },
   mounted() {
     this.fetchHeader()
+    this.fetchStatistik()
   }
 }
 </script>

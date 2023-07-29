@@ -31,7 +31,6 @@ export default {
     padding-top: 200px !important;
     background-image: url("https://stesting.uz/stestinglandingbg.png");
     background-repeat: no-repeat;
-    background-size: cover;
 }
 
 .hero__heading {
@@ -100,6 +99,11 @@ export default {
 }
 
 @media only screen and (max-width: 500px) {
+
+    .hero {
+        background-image: none
+    }
+
     .hero__heading {
         font-size: 32px
     }
@@ -108,7 +112,7 @@ export default {
         width: 450px !important
     }
 
-    .hero__warp{
+    .hero__warp {
         display: none
     }
 }

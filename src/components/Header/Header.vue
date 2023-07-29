@@ -16,7 +16,7 @@
                     </div>
                     <nav :class="isOpen ? 'block' : 'hidden'">
                         <div class="responsive-menu">
-                            <ul class="hamburger__list">
+                            <ul class="hamburger__list ms-6 w-full">
                                 <li class="hamburger__item" v-for="data in headerdata" :key="data.id">
                                     <router-link class="hamburger__link" :to="`${data.url}`">{{ data.title }}</router-link>
                                 </li>
@@ -222,7 +222,8 @@ export default {
     height: 786px;
     width: 100vw !important;
     padding: 50px 0px 0px;
-    transition: all 0.4s
+    transition: all 0.4s;
+    left: 0;
 }
 
 .hamburger__link {
