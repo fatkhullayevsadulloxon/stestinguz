@@ -34,44 +34,44 @@ export default {
 <style scoped>
 /* STATISTIK SECTION */
 .statistik__container {
-    background-image: url("https://stesting.uz/_nuxt/img/news-bg-item.fcbfd23.png");
-    background-repeat: no-repeat;
-    background-position: right bottom;
+    background-image: url("https://stesting.uz/_nuxt/img/news-bg-item.fcbfd23.png") !important;
+    background-repeat: no-repeat !important;
+    background-position: right bottom !important;
     width: 700px !important
 }
 
 .statistik__box {
     width: 250px !important;
-    height: 120px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: 48px;
-    border: 1px solid #eae8e8;
-    margin-top: -100px;
+    height: 120px !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 48px !important;
+    border: 1px solid #eae8e8 !important;
+    margin-top: -100px !important;
 }
 
 .location {
-    margin-left: -150px;
+    margin-left: -150px !important;
     /* position: absolute */
 }
 
 .location3 {
-    margin-right: -150px;
+    margin-right: -150px !important;
     /* position: absolute */
 }
 
 .Statistik__link {
-    margin-top: 30px
+    margin-top: 30px !important;
 }
 
 
 .Statistik__link-heading {
-    font-family: 'Poppins', sans-serif;
-    font-size: 19px;
-    color: #161c27;
-    text-align: center;
-    font-weight: 400;
-    margin-top: 5px
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 19px !important;
+    color: #161c27 !important;
+    text-align: center !important;
+    font-weight: 400 !important;
+    margin-top: 5px !important;
 }
 
 /* STATISTIK SECTION END */

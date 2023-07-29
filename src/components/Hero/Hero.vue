@@ -31,6 +31,7 @@ export default {
     padding-top: 200px !important;
     background-image: url("https://stesting.uz/stestinglandingbg.png");
     background-repeat: no-repeat;
+    background-size: 100vw
 }
 
 .hero__heading {
