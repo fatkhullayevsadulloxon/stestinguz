@@ -61,7 +61,7 @@ export default {
 }
 
 .Statistik__link {
-    margin-top: 30px !important;
+    margin-top: 10px !important;
 }
 
 
