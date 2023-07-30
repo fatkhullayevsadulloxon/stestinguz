@@ -1,22 +1,26 @@
 <template>
-    <Header :headerdata="dataArr1.list" :logo="dataArr1.logo" />
+    <div>
+      <Header :headerdata="dataArr1.list" :logo="dataArr1.logo" />
+      <FooterSection :footerinfo="footerinfo"/>
+    </div>
 </template>
 
 <script>
-import { RouterLink, RouterView } from 'vue-router'
 import Header from './components/Header/Header.vue'
 import axios from "axios"
+import FooterSection from './components/FooterSection/FooterSection.vue'
 export default {
   components: {
-    Header
-  },
+    Header,
+    FooterSection,
+},
 
   data() {
     return {
+      footerinfo: {},
       dataArr1: {
         list: [],
-        logo: ""
-
+        logo: "",
       },
     }
   },
@@ -29,7 +33,9 @@ export default {
           },
         })
 
+        this.footerinfo = data.footer.footer_info
         const dataArr = data.header_menu
+        console.log(this.footer_info);
         const newArr = dataArr.map(item => ({
           id: item.id,
           title: item.title,

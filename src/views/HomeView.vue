@@ -22,7 +22,7 @@ export default {
     About,
     Stastik,
     Research,
-    VideoLesson
+    VideoLesson,
 },
    data() {
     return {
@@ -30,7 +30,7 @@ export default {
       statistics: {},
       short_description: {},
       research: [],
-      main_video: {}
+      main_video: {},
     }
   },
   methods: {
