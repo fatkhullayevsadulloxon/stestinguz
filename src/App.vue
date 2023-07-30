@@ -2,6 +2,7 @@
     <div>
       <Header :headerdata="dataArr1.list" :logo="dataArr1.logo" />
       <FooterSection :footerinfo="footerinfo"/>
+      <FooterBottom :footerinfo="footerinfo" :headerdata="dataArr1.list"/>
     </div>
 </template>
 
@@ -9,10 +10,12 @@
 import Header from './components/Header/Header.vue'
 import axios from "axios"
 import FooterSection from './components/FooterSection/FooterSection.vue'
+import FooterBottom from './components/footerBottom/footerBottom.vue'
 export default {
   components: {
     Header,
     FooterSection,
+    FooterBottom
 },
 
   data() {

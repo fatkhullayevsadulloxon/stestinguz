@@ -9,11 +9,15 @@
                 </div>
                 <div class="mt-7">
                     <p class="text-white font-normal opacity-50">Elektron Pochta</p>
-                    <p class="text-white text-lg mt-2">{{ footerinfo.email }}</p>
+                    <a :href="`mailto: ${footerinfo.email}`">
+                        <p class="text-white text-lg mt-2">{{ footerinfo.email }}</p>
+                    </a>
                 </div>
                 <div class="mt-7">
                     <p class="text-white font-normal opacity-50">Telefon Raqami</p>
-                    <p class="text-white text-lg mt-2">{{ footerinfo.phone }}</p>
+                    <a :href="`tel:${footerinfo.phone}`">
+                        <p class="text-white text-lg mt-2">{{ footerinfo.phone }}</p>
+                    </a>
                 </div>
             </div>
             <iframe class="iframe" width="500" height="315" :src="`${footerinfo.location}`" />
@@ -72,7 +76,7 @@ export default {
     }
 
     .footer{
-        width: 100vh !important;
+       width: 450px !important
     }
     .footer__container{
         margin-left: -60px

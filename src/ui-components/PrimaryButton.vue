@@ -22,4 +22,6 @@ export default {
     background-color: #0a6dd6 !important;
     transition: all 0.4s !important
 }
+
+
 </style>
