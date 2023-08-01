@@ -1,13 +1,19 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import PublicationView from '../views/PublicationView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
+      path: '/:lan',
       name: 'home',
       component: HomeView
+    },
+    {
+      path: '/:lan/publication',
+      name: 'publication',
+      component: PublicationView
     },
     {
       path: '/about',

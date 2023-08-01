@@ -38,7 +38,7 @@ export default {
       try {
         const {data}  = await axios.get('https://qlapi.stesting.uz/api/v1/index/', {
           headers: {
-            'Accept-Language': 'uz'
+            'Accept-Language': this.$route.params.lan
           },
         })       
         this.registrations = data.registration  
@@ -51,7 +51,7 @@ export default {
           description: item.description,
           image_url: item.image_url,
           views: item.views,
-          date: '2021-09-04'
+          date: item.date
         }))
         this.research = newArr
         console.log(this.statistics);
@@ -63,7 +63,7 @@ export default {
       try {
         const {data}  = await axios.get('https://api.stesting.uz/api/v1/stat/top/', {
           headers: {
-            'Accept-Language': 'uz'
+            'Accept-Language': this.$route.params.lan
           },
         })       
         this.statistics = data  

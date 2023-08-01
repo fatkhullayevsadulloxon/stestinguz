@@ -8,7 +8,7 @@ export default {
     name: 'PrimaryButton'
 }
 </script>
-<style>
+<style scoped>
 .header__btn {
     padding: 12px 65px !important;
     background-color: #4f95ff !important;
