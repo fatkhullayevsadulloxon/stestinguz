@@ -10,7 +10,8 @@ export default {
 </script>
 <style scoped>
 .category__btn {
-    padding: 12px 65px !important;
+    width: 200px;
+    height: 50px;
     /* background-color: #4f95ff !important; */
     /* color: white !important; */
     transition: all 0.4s !important;

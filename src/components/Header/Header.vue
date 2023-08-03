@@ -79,19 +79,16 @@
                                 </button>
                                 <ul class="dropdown-menu absolute hidden text-gray-700 shadow-lg">
                                     <li>
-                                        <router-link @click="() => { fetchFunc('uz') }"
-                                            class="rounded-t bg-white hover:text-sky-700 transition-all py-2 px-4 block whitespace-no-wrap"
-                                            to="/uz">O'zbekcha</router-link>
+                                        <a class="rounded-t bg-white hover:text-sky-700 transition-all py-2 px-4 block whitespace-no-wrap"
+                                            href="/uz">O'zbekcha</a>
                                     </li>
                                     <li>
-                                        <router-link @click="() => { fetchFunc('ru') }"
-                                            class="rounded-t bg-white-200 hover:text-sky-700 transition-all py-2 px-4 block whitespace-no-wrap"
-                                            to="/ru">Русский</router-link>
+                                        <a class="rounded-t bg-white-200 hover:text-sky-700 transition-all py-2 px-4 block whitespace-no-wrap"
+                                            href="/ru">Русский</a>
                                     </li>
                                     <li>
-                                        <router-link @click="() => { fetchFunc('en') }"
-                                            class="rounded-t bg-white-200 hover:text-sky-700 transition-all py-2 px-4 block whitespace-no-wrap"
-                                            to="/en">English</router-link>
+                                        <a class="rounded-t bg-white-200 hover:text-sky-700 transition-all py-2 px-4 block whitespace-no-wrap"
+                                            href="/en">English</a>
                                     </li>
                                 </ul>
                             </div>
@@ -132,7 +129,10 @@ export default {
     },
     data() {
         return {
-            isOpen: false
+            isOpen: false,
+            onToggle() {
+
+            },
         };
     },
     components: { PrimaryButton }

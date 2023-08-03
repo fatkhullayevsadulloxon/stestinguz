@@ -10,6 +10,7 @@
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "axios": "^1.4.0",
+    "tw-elements": "^1.0.0-beta3",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4",
     "vue3-autocounter": "^1.0.6",

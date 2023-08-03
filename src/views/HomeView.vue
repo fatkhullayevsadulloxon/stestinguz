@@ -1,10 +1,10 @@
 <template>
   <div class="">
-        <hero :registrations="registrations"/>
-        <about :short_description="short_description"/>
-        <stastik :statistics="statistics"/>
-        <research :research="research"/>
-        <video-lesson :main_video="main_video"/>
+    <hero :registrations="registrations" />
+    <about :short_description="short_description" />
+    <stastik :statistics="statistics" />
+    <research :research="research" />
+    <video-lesson :main_video="main_video" />
   </div>
 </template>
 <script>
@@ -23,9 +23,10 @@ export default {
     Stastik,
     Research,
     VideoLesson,
-},
-   data() {
+  },
+  data() {
     return {
+      
       registrations: {},
       statistics: {},
       short_description: {},
@@ -34,14 +35,17 @@ export default {
     }
   },
   methods: {
-    async fetchHeader() {
+    async fetchHeader(lang) {
+      if (lang == null) {
+        lang = this.$route.params.lan
+      }
       try {
-        const {data}  = await axios.get('https://qlapi.stesting.uz/api/v1/index/', {
+        const { data } = await axios.get('https://qlapi.stesting.uz/api/v1/index/', {
           headers: {
-            'Accept-Language': this.$route.params.lan
+            'Accept-Language': lang
           },
-        })       
-        this.registrations = data.registration  
+        })
+        this.registrations = data.registration
         this.short_description = data.short_description
         this.main_video = data.main_video
         const dataArr = data.research
@@ -51,7 +55,7 @@ export default {
           description: item.description,
           image_url: item.image_url,
           views: item.views,
-          date: item.date
+          date: '2021-09-04'
         }))
         this.research = newArr
         console.log(this.statistics);
@@ -59,14 +63,17 @@ export default {
         console.log(error);
       }
     },
-    async fetchStatistik() {
+    async fetchStatistik(lang) {
+      if (lang == null) {
+        lang = this.$route.params.lan
+      }
       try {
-        const {data}  = await axios.get('https://api.stesting.uz/api/v1/stat/top/', {
+        const { data } = await axios.get('https://api.stesting.uz/api/v1/stat/top/', {
           headers: {
-            'Accept-Language': this.$route.params.lan
+            'Accept-Language': lang
           },
-        })       
-        this.statistics = data  
+        })
+        this.statistics = data
         // console.log(this.statistics);
       } catch (error) {
         console.log(error);
@@ -79,6 +86,4 @@ export default {
   }
 }
 </script>
-<style scoped>
-  
-</style>
+<style scoped></style>
