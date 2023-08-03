@@ -63,7 +63,7 @@
                     <img class="mt-6 ms-5" :src="`${publicationAll.image_url}`" alt="" width="150" height="147">
                     <div class="ms-10 flex-direction ">
                         <h1 class="text-2xl font-bold max-w-xl text-2xl	m-0 p-0">{{ publicationAll.title }}</h1>
-                        <p class="text-lg opactiy-25" v-html="`${publicationAll.description}`"></p>
+                        <p class="text-lg opacity-75 mt-2" v-html="`${publicationAll.description}`"></p>
                         <PrimaryButton class="fixedbutton">
                             <a :href="`${publicationAll.file_url}`">
                                 Yuklab olish
@@ -206,5 +206,6 @@ img {
     .fixedbutton{
         width: 250px !important;
     }
+    
 }
 </style>
