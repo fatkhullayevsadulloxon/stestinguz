@@ -8,12 +8,16 @@
                 <div class="2xl:flex xl:flex lg:flex md:block sm:block items-center justify-between mt-2">
                     <div class="2xl:flex xl:flex lg:flex md:flex sm:block">
                         <div>
-                            <CategoryButton class="ml-5 btn-category">
-                                Xalqaro
-                            </CategoryButton>
+                            <CategoryButton :class="{ 'bg-sky-500 span-white': international === 'XALQARO' }"  @click="() => {
+                                international = 'XALQARO'
+                            }" class="ml-5 btn-category">
+                                    Xalqaro
+                                </CategoryButton>
                         </div>
                         <div>
-                            <CategoryButton class="ml-5 btn-category">
+                            <CategoryButton :class="{ 'bg-sky-500 span-white': international === 'MILLIY' }" @click="() => {
+                                international = 'MILLIY'
+                            }" class="ml-5 btn-category">
                                 Milliy
                             </CategoryButton>
                         </div>
@@ -28,7 +32,14 @@
                         <div class="relative text-lg">
                             <button class="flex items-center justify-between px-3 py-2 bg-white w-full  rounded-lg"
                                 @click="isOptionsExpanded = !isOptionsExpanded" @blur="isOptionsExpanded = false">
-                                <span class="text-sm opacity-50">Barcha yo'nalishlar</span>
+                                <span class="text-sm opacity-50">
+                                    <span v-if="international === 'all'">
+                                        Barcha yo'nalishlar
+                                    </span>
+                                    <span v-else>
+                                        {{ international }}
+                                    </span>
+                                </span>
                                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"
                                     class="h-4 w-4 transform transition-transform duration-200 ease-in-out"
                                     :class="isOptionsExpanded ? 'rotate-180' : 'rotate-0'">
@@ -44,12 +55,17 @@
                                 leave-to-class="-translate-y-1/2 scale-y-0 opacity-0">
                                 <ul v-show="isOptionsExpanded"
                                     class="absolute list_box left-0 right-0 mb-4 mt-2 bg-white rounded shadow-lg overflow-hidden border">
-                                    <li class="px-3 py-2 text-sm duration-300 hover:bg-gray-200">
+                                    <li @mousedown="() => {
+                                        international = 'all'
+                                    }" class="px-3 py-2 text-sm duration-300 hover:bg-gray-200">
                                         Barchasi
                                     </li>
-                                    <li v-for="publicData in publicationCategory" :key="publicData.id"
-                                        class="px-3 py-2 text-sm duration-300 hover:bg-gray-200"
-                                        @mousedown.prevent="setOption(option)">
+                                    <li v-for=" publicData  in  publicationCategory " :key="publicData.id"
+                                        class="px-3 py-2 text-sm duration-300 hover:bg-gray-200" @mousedown="() => {
+                                            international = publicData.title
+                                            setOption(!isOptionsExpanded)
+                                        }
+                                            ">
                                         {{ publicData.title }}
                                     </li>
                                 </ul>
@@ -58,8 +74,9 @@
                     </div>
                 </div>
             </Box>
-            <Card class="mt-10 " v-for="publicationAll in publication" :key="publicationAll.id">
-                <div class="2xl:flex xl:flex 2xl:flex lg:flex md:block sm:block p-5">
+            <Card class="mt-10 mb-10" v-for=" publicationAll  in  publication " :key="publicationAll.id">
+                <div v-if="publicationAll.area === international || international === 'all' || international === publicationAll.category"
+                    class="2xl:flex xl:flex 2xl:flex lg:flex md:block sm:block p-5">
                     <img class="mt-6 ms-5" :src="`${publicationAll.image_url}`" alt="" width="150" height="147">
                     <div class="ms-10 flex-direction ">
                         <h1 class="text-2xl font-bold max-w-xl text-2xl	m-0 p-0">{{ publicationAll.title }}</h1>
@@ -72,6 +89,38 @@
                     </div>
                 </div>
             </Card>
+            <div class="flex items-center justify-between bg-white px-4 py-3 sm:px-6">
+
+                <div class="sm:flex sm:flex-1 sm:items-center sm:justify-end">
+
+                    <div>
+                        <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+                            <a @click="$emit('onChangePrev')"
+                                class="relative cursor-pointer inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                                <span class="sr-only">Previous</span>
+                                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                            <!-- Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" -->
+                            <a v-for=" pageNumber  in  total_pages " :key="pageNumber"
+                                :class="{ 'bg-sky-700 span-white': pageNumber == page }" @click="$emit('onChangePage', pageNumber)"
+                                class="relative z-10 cursor-pointer inline-flex items-center bg-white-600 px-4 py-2 text-sm font-semibold text-sky-600 focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:out   line-sky-600 border">{{
+                                    pageNumber }}</a>
+                            <a @click="$emit('onChangeNext')"
+                                class="relative cursor-pointer inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </template>
@@ -90,19 +139,29 @@ export default {
             type: Array,
             required: true
         },
+        total_pages: {
+            type: Array,
+            required: true
+        },
+        page: {
+            type: Array,
+            required: true
+        }
     },
     data() {
         return {
             isOptionsExpanded: false,
             selectedOption: "1x",
-            options: ["1x", "2x", "3x", "4x or more"]
+            options: ["1x", "2x", "3x", "4x or more"],
+            international: "all",
+            filterSelect: "Barcha yo'nalishlar"
         };
     },
     methods: {
         setOption(option) {
             this.selectedOption = option;
             this.isOptionsExpanded = false;
-        }
+        },
     }
 }
 </script>
@@ -143,18 +202,26 @@ img {
     justify-content: space-between !important;
 }
 
-.fixedbutton{
+.fixedbutton {
     width: 300px;
     margin-top: 20px !important
 }
 
+.span-white{
+    color: white !important
+}
+
+.span-white:hover{
+    color: white !important
+}
+
 @media only screen and (max-width: 1020px) {
-    .flex-direction{
+    .flex-direction {
         margin-left: 20px !important;
         margin-top: 20px
     }
 
-    .flex-direction p{
+    .flex-direction p {
         margin-top: 10px !important
     }
 }
@@ -203,9 +270,9 @@ img {
         width: 400px !important
     }
 
-    .fixedbutton{
+    .fixedbutton {
         width: 250px !important;
     }
-    
+
 }
 </style>
