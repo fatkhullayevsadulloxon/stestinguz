@@ -37,7 +37,6 @@ export default {
       if (lang == null) {
         lang = this.$route.params.lan
       }
-
       try {
         const { data } = await axios.get('https://qlapi.stesting.uz/api/v1/menu/', {
           headers: {

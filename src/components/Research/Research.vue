@@ -32,7 +32,6 @@
             </div>
         </div>
     </section>
-    <router-view />
 </template>
 <script>
 import PrimaryButton from '../../ui-components/PrimaryButton.vue';
@@ -167,7 +166,6 @@ export default {
 
     .research{
         background-color: transparent;
-        
     }
 }
 
