@@ -177,7 +177,7 @@ export default {
     }
 
     .about{
-        margin-bottom: 790px !important
+        margin-bottom: 1100px !important
     }
 
     
