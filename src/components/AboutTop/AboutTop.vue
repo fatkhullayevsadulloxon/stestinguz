@@ -57,7 +57,7 @@ export default {
 <style scoped>
 .about {
     margin-top: 60px !important;
-    margin-bottom: 730px !important
+    margin-bottom: 900px !important
 }
 
 .about__container {
