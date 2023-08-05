@@ -11,15 +11,15 @@
                             <img class="nav-hamburger-img" v-if="isOpen === true" src="../../assets/img/close.svg" alt=""
                                 width="40" height="40">
                         </button>
-                        <a href="#" class="sm:ms-10 md:mb-2">
+                        <RouterLink to="/" class="sm:ms-10 md:mb-2">
                             <img class="header__logo" :src="`${logo}`" alt="" width="130" height="28">
-                        </a>
+                        </RouterLink>
                     </div>
                     <nav :class="isOpen ? 'block' : 'hidden'">
                         <div class="responsive-menu">
                             <ul class="hamburger__list ms-6 w-full">
                                 <li class="hamburger__item" v-for="data in headerdata" :key="data.id">
-                                    <router-link class="hamburger__link" :to="`/:lan/${data.url}`">{{ data.title
+                                    <router-link class="hamburger__link" :to="`/${$route.params.lan}/${data.url}`">{{ data.title
                                     }}</router-link>
                                 </li>
                                 <li class="item dropdown-item">
@@ -64,7 +64,7 @@
                 <nav class="sitenav">
                     <ul class="list">
                         <li class="item" v-for="data in headerdata" :key="data.id">
-                            <router-link class="link" :to="`/${$route.params.lan}/${data.url}`">{{ data.title
+                            <router-link class="link text-black" :to="`/${$route.params.lan}/${data.url}`">{{ data.title
                             }}</router-link>
                         </li>
                         <li class="item dropdown-item">
@@ -130,9 +130,7 @@ export default {
     data() {
         return {
             isOpen: false,
-            onToggle() {
-
-            },
+            active: "none",
         };
     },
     components: { PrimaryButton }
@@ -180,7 +178,6 @@ export default {
 
 .link {
     text-decoration: none;
-    color: #161c27;
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
     transition: all 0.4s;
@@ -190,6 +187,10 @@ export default {
 .link:hover {
     opacity: 0.7;
     transition: all 0.4s
+}
+
+.router-link-active {
+    color: #007bff  
 }
 
 

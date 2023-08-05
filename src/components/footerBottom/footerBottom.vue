@@ -38,7 +38,7 @@
                     </a>
                 </div>
                 <div class="flex items-center developed">
-                    <p class="">Developed by</p>
+                    <p class="select-none">Developed by</p>
                     <img class="" src="https://uic.group/uic-images/about/about-uic-logo.png" alt="" width="150" height="100">
                 </div>
             </div>

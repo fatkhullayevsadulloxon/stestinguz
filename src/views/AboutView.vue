@@ -1,15 +1,37 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <section class="about">
+    <div class="">
+      <AboutTop :aboutus="aboutus" />
+    </div>
+  </section>
 </template>
+<script>
+import AboutTop from '../components/AboutTop/AboutTop.vue';
+import axios from 'axios';
+export default {
+  components: {
+    AboutTop
+  },
+  data() {
+    return {
+      aboutus: {},
+    }
+  },
+  methods: {
+    async fetchAboutus() {
+      const { data } = await axios.get('https://qlapi.stesting.uz/api/v1/aboutus/', {
+        headers: {
+          'Accept-language': this.$route.params.lan
+        },
+      })
+      this.aboutus = data
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+      console.log(this.aboutus)
+    }
+  },
+  mounted() {
+    this.fetchAboutus()
   }
 }
-</style>
+</script>
+<style scoped></style>

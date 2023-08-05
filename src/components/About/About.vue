@@ -8,7 +8,7 @@
                 <img class="about__img" src="https://stesting.uz/wrap2.png" alt="" width="90" height="27">
             </div>
             <p class="about__desc opacity-75">{{ short_description }}</p>
-            <router-link  to="/about">
+            <router-link :to="`${$route.params.lan}/about`">
                 <PrimaryButton class="my-5">
                     Batafsil
                 </PrimaryButton>

@@ -4,6 +4,10 @@
     <router-view />
     <FooterSection :footerinfo="footerinfo" />
     <FooterBottom :footerinfo="footerinfo" :headerdata="dataArr1.list" />
+    <a class="2xl:block xl:block lg:block md:hidden sm:hidden" href="https://avloniy.uz/uz" target="_blank">
+      <img class="tranform-default bg-white p-5 shadow-lg rounded"  src="https://onlinedu.uz/images/assets/logo.png" alt=""
+        width="220" height="40">
+    </a>
   </div>
 </template>
 
@@ -74,5 +78,18 @@ export default {
 
 
 <style>
-/* @import url("assets/base.css"); */
+.tranform-default {
+  transform: rotate(270deg);
+  /* margin-top: -300px; */
+  margin-left: -80px; 
+  position: fixed;
+  top: 500px !important;
+  bottom: 300px !important
+}
+
+@media only screen and (max-width: 640px) {
+    .tranform-default{
+      display: none !important;
+    }
+}
 </style>
