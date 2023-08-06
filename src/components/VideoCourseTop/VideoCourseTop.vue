@@ -8,16 +8,18 @@
                 <div class="2xl:flex xl:flex lg:flex md:block sm:block items-center justify-between mt-2">
                     <div class="2xl:flex xl:flex lg:flex md:flex sm:block">
                         <div>
-                            <CategoryButton :class="{ 'bg-sky-500 span-white': international === 'XALQARO' }" @click="() => {
-                                international = 'XALQARO'
-                            }" class="ml-5 btn-category">
+                            <CategoryButton :class="{ 'bg-sky-500 span-white': international === 'O\'quvchilar uchun' }"
+                                @click="() => {
+                                    international = 'O\'quvchilar uchun'
+                                }" class="ml-5 btn-category">
                                 O'quvchilar uchun
                             </CategoryButton>
                         </div>
                         <div>
-                            <CategoryButton :class="{ 'bg-sky-500 span-white': international === 'MILLIY' }" @click="() => {
-                                international = 'MILLIY'
-                            }" class="ml-5 btn-category">
+                            <CategoryButton :class="{ 'bg-sky-500 span-white': international === 'O\'qituvchilar uchun' }"
+                                @click="() => {
+                                    international = 'O\'qituvchilar uchun'
+                                }" class="ml-5 btn-category">
                                 O'qituvchilar uchun
                             </CategoryButton>
                         </div>
@@ -55,13 +57,14 @@
                                     }" class="px-3 py-2 text-sm duration-300 hover:bg-gray-200">
                                         Barchasi
                                     </li>
-                                    <li v-for=" videoCourseData in videoCourseCategory " :key="videoCourseData.id"
+                                    <li v-for=" videoCourseCategoryData in videoCourseCategory "
+                                        :key="videoCourseCategoryData.id"
                                         class="px-3 py-2 text-sm duration-300 hover:bg-gray-200" @mousedown="() => {
-                                            international = videoCourseData.title
+                                            international = videoCourseCategoryData.title
                                             setOption(!isOptionsExpanded)
                                         }
                                             ">
-                                        {{ videoCourseData.title }}
+                                        {{ videoCourseCategoryData.title }}
                                     </li>
                                 </ul>
                             </transition>
@@ -69,11 +72,34 @@
                     </div>
                 </div>
             </Box>
-            <div class="main-video__container grid grid-cols-3 gap-3">
-                <a v-for="videoCourseData in videoCourse" :key="videoCourseData.id" class="main-video__box shadow-md bg-gradient-to-r from-cyan-500 to-blue-500">
-                    <img src="https://stesting.uz/_nuxt/img/videoCover.e3ce9ad.jpg" alt="">
-                </a>
+            <div class="main-video__container grid 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 gap-3">
+                <div @click="onToggle" v-for="videoCourseData in videoCourse" :key="videoCourseData.id" class="">
+                    <a :href="`${videoCourseData.video}`" target="_blank"
+                        v-if="videoCourseData.get_courses_display === international || international === 'all' || international === videoCourseData.direction"
+                        class="main-video__box shadow-md h-80 flex-direction mt-5 cursor-pointer">
+                        <span class="direction bg-neutral-500 p-3 w-16 ms-5 mt-3 absolute text-white">{{
+                            videoCourseData.direction }}</span>
+                        <div class="gradient">
+                            <img class="mt-2" src="../../assets/img/videocover.png" alt="">
+                        </div>
+                        <div class="backdrop-blur rounded-full absolute mt-20 flex items-center justify-center border">
+                            <i class="fa-solid fa-play" style="color: #ffffff;"></i>
+                        </div>
+                        <p class="font-bold ms-5 text-cyan-950	mt-7">{{ videoCourseData.title }}</p>
+                        <div class="h-16 blur-bg flex items-center justify-around">
+                            <div class="flex items-center">
+                                <i class="fa-regular fa-eye fa-lg" style="color: #808080;"></i>
+                                <p class="text-cyan-950	 my-1 text-base	ms-3">{{ videoCourseData.views }}</p>
+                            </div>
+                            <div class=" flex items-center">
+                                <i class="fa-regular fa-calendar fa-lg" style="color: #808080;"></i>
+                                <p class="text-cyan-950	 my-1 text-base	ms-3">{{ videoCourseData.date }}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
+            
             <div class="flex items-center justify-between bg-white px-4 py-3 sm:px-6">
 
                 <div class="sm:flex sm:flex-1 sm:items-center sm:justify-end">
@@ -90,7 +116,7 @@
                                 </svg>
                             </a>
                             <!-- Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" -->
-                            <a v-for=" pageNumber  in  total_pages " :key="pageNumber"
+                            <a v-for="pageNumber in total_pages " :key="pageNumber"
                                 :class="{ 'bg-sky-700 span-white': pageNumber == page }"
                                 @click="$emit('onChangePage', pageNumber)"
                                 class="relative z-10 cursor-pointer inline-flex items-center bg-white-600 px-4 py-2 text-sm font-semibold text-sky-600 focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:out   line-sky-600 border">{{
@@ -115,7 +141,7 @@ import Card from '../../ui-components/Card.vue';
 import CategoryButton from '../../ui-components/CategoryButton.vue';
 
 export default {
-    components: { CategoryButton, Card },
+    components: { CategoryButton, Card, },
     props: {
         videoCourseCategory: {
             type: Array,
@@ -140,14 +166,25 @@ export default {
             selectedOption: "1x",
             options: ["1x", "2x", "3x", "4x or more"],
             international: "all",
-            filterSelect: "Barcha yo'nalishlar"
+            filterSelect: "Barcha yo'nalishlar",
+            isOpen: true,
+            pagination: "..."
         };
+    },
+
+    computed: {
+        isModalVisible() {
+            return this.isOpen;
+        }
     },
     methods: {
         setOption(option) {
             this.selectedOption = option;
             this.isOptionsExpanded = false;
         },
+        onToggle() {
+            this.isOpen = !this.isOpen;
+        }
     }
 }
 </script>
@@ -156,9 +193,20 @@ export default {
     margin-top: 100px !important
 }
 
+.main-video__container {
+    margin-left: 60px
+}
+
+.main-video__box {
+    width: 311px !important
+}
+
+.gradient {
+    background: linear-gradient(180deg, rgba(22, 28, 39, .6), rgba(22, 28, 39, 0));
+}
+
 span {
     font-family: "Poppins";
-    color: #161c27
 }
 
 select option:checked,
@@ -166,11 +214,6 @@ option:hover {
     background-color: gray !important;
     color: white;
     padding: 20px !important;
-}
-
-h1,
-p {
-    font-family: sans-serif;
 }
 
 .list_box {
@@ -188,18 +231,27 @@ img {
     justify-content: space-between !important;
 }
 
-.fixedbutton {
-    width: 300px;
-    margin-top: 20px !important
+.flex-direction {
+    -webkit-flex-direction: column !important;
+    display: flex;
+    flex-direction: column !important;
+    justify-content: space-between !important;
 }
 
 .span-white {
-    color: white !important
+    color: white
 }
 
 .span-white:hover {
-    color: white !important
+    color: white
 }
+
+.backdrop-blur {
+    width: 50px;
+    height: 50px;
+    margin-left: 130px
+}
+
 
 @media only screen and (max-width: 1020px) {
     .flex-direction {
@@ -260,5 +312,4 @@ img {
         width: 250px !important;
     }
 
-}
-</style>
+}</style>

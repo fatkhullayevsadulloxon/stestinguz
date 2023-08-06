@@ -55,10 +55,9 @@ export default {
           description: item.description,
           image_url: item.image_url,
           views: item.views,
-          date: '2021-09-04'
+          date: item.date
         }))
         this.research = newArr
-        console.log(this.statistics);
       } catch (error) {
         console.log(error);
       }

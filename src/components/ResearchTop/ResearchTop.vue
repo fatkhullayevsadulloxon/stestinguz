@@ -70,8 +70,8 @@
                 </div>
             </Box>
             <div class="grid 2xl:grid-cols-4 xl:grid-cols-4 lg:grid-cols-4 gap-4 md:grid-cols-2 sm:grid-cols-2">
-                <router-link :to="`/news/${data.id}`" v-for="data in research" :key="data.id"
-                    class="">
+                <router-link v-for="data in research" :key="data.id"
+                    class="" :to="`news/${data.id}`">
                    <div class="research__box bg-white  h-80 shadow-md hover:shadow-lg sm:m-auto" v-if="data.area === international || international === 'all' || international === data.category" :class="{'h1-hidden' : data.category.length === 0}">
                      <img class="research-img" :src="`${data.image_url}`" alt="">
                         <div class="backdrop-blur h-16 blur-bg flex items-center justify-around">

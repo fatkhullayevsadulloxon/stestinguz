@@ -15,7 +15,6 @@
             </router-link>
         </div>
     </section>
-    <router-view />
 </template>
 <script>
 import PrimaryButton from '../../ui-components/PrimaryButton.vue';

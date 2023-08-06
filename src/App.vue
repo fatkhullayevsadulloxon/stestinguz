@@ -50,7 +50,6 @@ export default {
 
         this.footerinfo = data.footer.footer_info
         const dataArr = data.header_menu
-        console.log(this.footer_info);
         const newArr = dataArr.map(item => ({
           id: item.id,
           title: item.title,
@@ -59,7 +58,7 @@ export default {
         }))
         this.dataArr1.list = newArr
         this.dataArr1.logo = data.logo_url
-        console.log(this.dataArr1);
+
       } catch (error) {
 
       }
@@ -67,7 +66,6 @@ export default {
   },
   created() {
     setTimeout(() => {
-      console.log('keldi');
       this.fetchHeader()
     }, 0);
   }

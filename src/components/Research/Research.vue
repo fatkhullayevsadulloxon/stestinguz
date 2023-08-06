@@ -14,7 +14,7 @@
             </div>
 
             <div class="grid lg:grid-cols-4 gap-4 md:grid-cols-2">
-                <router-link :to="`/news/${data.id}`" v-for="data in research" :key="data.id" class="research__box bg-white  h-80 shadow-md hover:shadow-lg sm:m-auto">
+                <router-link :to="`${$route.params.lan}/news/${data.id}`" v-for="data in research" :key="data.id" class="research__box bg-white  h-80 shadow-md hover:shadow-lg sm:m-auto">
                     <img class="research-img" :src="`${data.image_url}`" alt="">
                     <div class="backdrop-blur h-16 blur-bg flex items-center justify-around">
                         <div class="">

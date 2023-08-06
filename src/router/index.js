@@ -4,6 +4,7 @@ import PublicationView from '../views/PublicationView.vue'
 import VideoCourse from '../views/VideoCourse.vue'
 import ResearchView from '../views/ResearchView.vue'
 import AboutView from '../views/AboutView.vue'
+import SingleResearch from '../views/SingleResearchView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -39,9 +40,14 @@ const router = createRouter({
     },
     {
       path: '/:lan/about',
-      name: 'news',
+      name: 'about',
       component: AboutView
-    }
+    },
+    {
+      path: '/:lan/news/:id',
+      name: 'single',
+      component: SingleResearch
+    },
   ]
 })
 

@@ -1,6 +1,7 @@
 <template>
     <div>
-        <video-course-top :videoCourse="videoCourse" :videoCourseCategory="videoCourseCategory"/>
+        <video-course-top @onChangePage="onChangePage" :total_pages="total_pages" :page="page" @onChangePrev="onChangePrev" @onChangeNext="onChangeNext" :videoCourse="videoCourse"
+            :videoCourseCategory="videoCourseCategory" />
     </div>
 </template>
 <script>
@@ -14,7 +15,8 @@ export default {
         return {
             videoCourseCategory: [],
             videoCourse: [],
-
+            total_pages: 0,
+            page: 1
         }
     },
     methods: {
@@ -53,6 +55,7 @@ export default {
                 }))
                 this.videoCourse = newArr
                 this.total_pages = Math.ceil(data.total_pages)
+
             } catch (error) {
                 console.log(error);
             }
@@ -65,6 +68,12 @@ export default {
         },
         onChangeNext() {
             this.page++
+        }
+    },
+
+    watch: {
+        page() {
+            this.fetchVideoCourse()
         }
     },
     mounted() {

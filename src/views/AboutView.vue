@@ -25,8 +25,6 @@ export default {
         },
       })
       this.aboutus = data
-
-      console.log(this.aboutus)
     }
   },
   mounted() {

@@ -19,7 +19,7 @@
                         <div class="responsive-menu">
                             <ul class="hamburger__list ms-6 w-full">
                                 <li class="hamburger__item" v-for="data in headerdata" :key="data.id">
-                                    <router-link class="hamburger__link" :to="`/${$route.params.lan}/${data.url}`">{{ data.title
+                                    <router-link class="hamburger__link" :to="`${$route.params.lan}/${data.url}`">{{ data.title
                                     }}</router-link>
                                 </li>
                                 <li class="item dropdown-item">
