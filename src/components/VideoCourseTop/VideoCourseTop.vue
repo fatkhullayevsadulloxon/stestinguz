@@ -99,7 +99,7 @@
                     </a>
                 </div>
             </div>
-            
+
             <div class="flex items-center justify-between bg-white px-4 py-3 sm:px-6">
 
                 <div class="sm:flex sm:flex-1 sm:items-center sm:justify-end">
@@ -116,11 +116,16 @@
                                 </svg>
                             </a>
                             <!-- Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" -->
-                            <a v-for="pageNumber in total_pages " :key="pageNumber"
-                                :class="{ 'bg-sky-700 span-white': pageNumber == page }"
-                                @click="$emit('onChangePage', pageNumber)"
-                                class="relative z-10 cursor-pointer inline-flex items-center bg-white-600 px-4 py-2 text-sm font-semibold text-sky-600 focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:out   line-sky-600 border">{{
-                                    pageNumber }}</a>
+                            <div v-for="pageNumber in total_pages " :key="pageNumber"
+                                >
+
+                                <a  v-if="pageNumber < page + 3 && pageNumber > page - 3 || (page < 5 && pageNumber <= 5)"
+                                    @click="$emit('onChangePage', pageNumber)"
+                                    :class="{ 'bg-sky-700 span-white': pageNumber == page }"
+                                    class="relative z-10 cursor-pointer inline-flex items-center bg-white-600 px-4 py-2 text-sm font-semibold text-sky-600 focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:out   line-sky-600 border">{{
+                                        pageNumber }}</a>
+
+                            </div>
                             <a @click="$emit('onChangeNext')"
                                 class="relative cursor-pointer inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
                                 <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -301,6 +306,10 @@ img {
         width: 300px !important;
         margin-top: 20px
     }
+
+    .main-video__container{
+        margin-left: -10px
+    }
 }
 
 @media only screen and (max-width: 500px) {
@@ -312,4 +321,5 @@ img {
         width: 250px !important;
     }
 
-}</style>
+}
+</style>

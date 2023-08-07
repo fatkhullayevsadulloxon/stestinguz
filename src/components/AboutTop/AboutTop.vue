@@ -1,7 +1,7 @@
 <template>
     <section class="about">
         <div
-            class="container about__container bg-sky-50 bg-[url('https://stesting.uz/aboutlandingbg.png')]  bg-no-repeat bg-left-top [background-position-x:100px] bg-contain	">
+            class="container about__container bg-sky-50 bg-[url('https://stesting.uz/aboutlandingbg.png')]  bg-no-repeat bg-left-top [background-position-x:100px] bg-contain">
             <div class="text-center pt-20">
                 <h3 class="font-bold 2xl:text-4xl xl:text-4xl lg:text-4xl md:text-3xl sm:text-3xl">Stesting nima?</h3>
                 <p class="text-lg font-light opacity-50 max-w-md m-auto mt-2">Biroz pastga suring va Stesting haqida
