@@ -3,18 +3,21 @@
         <div class="container">
             <div class="lg:flex items-center justify-between md:block">
                 <div class="my-10">
-                    <span class="research-span 2xl:block xl:block lg:block md:block sm:hidden">So'nggi</span>
-                    <img class="absolute 2xl:py-0 xl:py-0 lg:py-0 md:py-0 sm:py-5 sm:mx-20" src="https://stesting.uz/wrap3.png" alt="" width="140" height="42">
-                    <p class="research-span 2xl:block xl:block lg:block md:block z-10 sm:hidden">Tadqiqotlar</p>
-                    <p class="research-span z-10 2xl:hidden xl:hidden lg:hidden md:hidden sm:block sm:py-5 research_none">So'ngi tadqiqotlar</p>
+                    <span class="research-span 2xl:block xl:block lg:block md:block sm:hidden">{{ langtext[$route.params.lan].homePage.researchHeading1 }}</span>
+                    <img class="absolute 2xl:py-0 xl:py-0 lg:py-0 md:py-0 sm:py-5 sm:mx-20"
+                        src="https://stesting.uz/wrap3.png" alt="" width="140" height="42">
+                    <p class="research-span 2xl:block xl:block lg:block md:block z-10 sm:hidden">{{ langtext[$route.params.lan].homePage.researchHeading2 }}</p>
+                    <p class="research-span z-10 2xl:hidden xl:hidden lg:hidden md:hidden sm:block sm:py-5 research_none">
+                        {{ langtext[$route.params.lan].homePage.researchHeading3 }}</p>
                 </div>
                 <PrimaryButton to="/uz/news">
-                    Barcha Tadqiqotlar
+                    {{ langtext[$route.params.lan].homePage.researchBtn }}
                 </PrimaryButton>
             </div>
 
             <div class="grid lg:grid-cols-4 gap-4 md:grid-cols-2">
-                <router-link :to="`${$route.params.lan}/news/${data.id}`" v-for="data in research" :key="data.id" class="research__box bg-white  h-80 shadow-md hover:shadow-lg sm:m-auto">
+                <router-link :to="`${$route.params.lan}/news/${data.id}`" v-for="data in research" :key="data.id"
+                    class="research__box bg-white  h-80 shadow-md hover:shadow-lg sm:m-auto">
                     <img class="research-img" :src="`${data.image_url}`" alt="">
                     <div class="backdrop-blur h-16 blur-bg flex items-center justify-around">
                         <div class="">
@@ -36,11 +39,18 @@
 <script>
 import PrimaryButton from '../../ui-components/PrimaryButton.vue';
 import { RouterLink, RouterView } from "vue-router";
+import { Lang } from '../Lan/Lan';
+
 export default {
     props: {
         research: {
             type: Array,
             required: true
+        }
+    },
+    data() {
+        return {
+            langtext: Lang,
         }
     },
     components: { PrimaryButton }
@@ -75,7 +85,7 @@ export default {
     object-fit: cover
 }
 
-.research-link__title{
+.research-link__title {
     font-family: "Poppins";
     font-weight: 600;
     color: #161c27;
@@ -88,7 +98,7 @@ export default {
     line-height: 20px !important;
 }
 
-.research-link_span{
+.research-link_span {
     font-size: 14px;
     color: #73777d;
     font-family: "Poppins";
@@ -99,74 +109,76 @@ export default {
     position: absolute;
 }
 
-.blur-bg{
+.blur-bg {
     margin-top: -60px !important
 }
 
-.backdrop-blur p{
+.backdrop-blur p {
     font-family: "Poppins";
     font-weight: 400;
 }
 
 @media only screen and (max-width: 1020px) {
-    .research{
+    .research {
         margin-top: 300px !important;
         height: 900px !important;
     }
 
-    .research__box{
+    .research__box {
         width: 354px !important;
         margin-top: 20px !important;
     }
 
-    .research-img{
+    .research-img {
         width: 354px;
     }
 }
+
 @media only screen and (max-width: 768px) {
-    .research{
+    .research {
         margin-top: 300px !important;
         height: 1600px !important;
     }
 }
+
 @media only screen and (max-width: 640px) {
-    .container{
+    .container {
         width: 600px !important;
     }
 
-    .research-span{
+    .research-span {
         display: none !important
     }
 
-    .research_none{
+    .research_none {
         display: block !important;
         padding-top: 20px !important;
     }
 
 
-    .research__box{
+    .research__box {
         margin: 0 auto
     }
-    
+
 }
+
 @media only screen and (max-width: 600px) {
-    .container{
+    .container {
         width: 500px !important;
     }
 }
+
 @media only screen and (max-width: 500px) {
-    .container{
+    .container {
         width: 400px !important;
     }
 
-    .research_box{
+    .research_box {
         margin: 0 auto !important;
         margin-top: 20px !important;
     }
 
-    .research{
+    .research {
         background-color: transparent;
     }
-}
-
-</style>
+}</style>

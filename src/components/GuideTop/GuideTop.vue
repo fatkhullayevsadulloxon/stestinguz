@@ -3,8 +3,8 @@
         <div class="container">
             <div
                 class="about__container bg-[url('https://stesting.uz/_nuxt/img/guide-bg.79378ab.png')]  bg-no-repeat bg-left-top bg-cover">
-                <h3 class="text-center font-bold text-3xl pt-7">Yoʻriqnoma</h3>
-                <p class="text-center opacity-50 mt-2">Loyihada test topshirish boʻyicha qo‘llanma</p>
+                <h3 class="text-center font-bold text-3xl pt-7">{{ langtext[$route.params.lan].guide.guideHeading }}</h3>
+                <p class="text-center opacity-50 mt-2">{{ langtext[$route.params.lan].guide.guideDesc }}</p>
             </div>
             <div class="guide__container">
                 <div class="bg-white shadow-lg 2xl:flex xl:flex lg:flex md:block sm:block block">
@@ -28,6 +28,9 @@
     </section>
 </template>
 <script>
+import { Lang } from '../Lan/Lan';
+
+
 export default {
     props: {
         guide: {
@@ -60,10 +63,14 @@ export default {
     },
     data() {
         return {
-            guideid: 14,
-            currentVideo: {}
+            currentVideo: {},
+            langtext: Lang,
         }
     },
+
+    mounted() {
+
+    }
 }
 </script>
 <style scoped>
@@ -160,7 +167,7 @@ export default {
         width: 400px !important
     }
 
-    .about__container{
+    .about__container {
         width: 400px !important
     }
 

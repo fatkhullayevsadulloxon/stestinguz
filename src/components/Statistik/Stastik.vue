@@ -5,30 +5,38 @@
                 <vue3-autocounter class="Statistik__link text-sky-600 flex items-center justify-around" ref='counter'
                     :startAmount='0' :endAmount='statistics.student' :duration='3' separator=' ' :decimals='0'
                     :autoinit='true' />
-                <h3 class="Statistik__link-heading">O`quvchilar</h3>
+                <h3 class="Statistik__link-heading">{{ langtext[$route.params.lan].homePage.statistikPeople }}
+                </h3>
             </div>
             <div class="bg-white shadow-lg statistik__box location2">
                 <vue3-autocounter class="Statistik__link text-sky-600 flex items-center justify-around" ref='counter'
                     :startAmount='0' :endAmount='statistics.school' :duration='3' separator=' ' :decimals='0' />
-                <h3 class="Statistik__link-heading">Maktablar</h3>
+                <h3 class="Statistik__link-heading">{{ langtext[$route.params.lan].homePage.statistikSchool }}</h3>
             </div>
             <div class="bg-white shadow-lg statistik__box location3">
                 <vue3-autocounter class="Statistik__link text-sky-600 flex items-center justify-around" ref='counter'
                     :startAmount='0' :endAmount='statistics.exams' :duration='3' separator=' ' decimalSeparator=' '
                     :decimals='0' :autoinit='true' />
-                <h3 class="Statistik__link-heading">Topshiriqlar</h3>
+                <h3 class="Statistik__link-heading">{{ langtext[$route.params.lan].homePage.statistikPeople }}</h3>
             </div>
         </div>
     </section>
 </template>
 <script>
+import { Lang } from '../Lan/Lan';
 export default {
+    name: "Statistik",
     props: {
         statistics: {
             type: Object,
             required: true
         }
-    }
+    },
+    data() {
+        return {
+            langtext: Lang,
+        }
+    },
 }
 </script>
 <style scoped>
@@ -79,7 +87,7 @@ export default {
 /* RESPONSIVE */
 
 @media only screen and (max-width: 1020px) {
-    .statistik__container{
+    .statistik__container {
         display: block !important;
         margin: 0 auto
     }
@@ -117,7 +125,7 @@ export default {
         width: 300px !important;
     }
 
-     .container {
+    .container {
         width: 400px !important
     }
 }
@@ -131,4 +139,5 @@ export default {
         width: 30px !important;
         height: 30px !important;
     }
-}</style>
+}
+</style>

@@ -3,7 +3,7 @@
         <div class="container research__container">
             <Box>
                 <div class="publicaton-top__left pt-7 ms-5">
-                    <span class="text-4xl font-semibold">Tadqiqotlar</span>
+                    <span class="text-4xl font-semibold">{{ langtext[$route.params.lan].research.researchHeading }}</span>
                 </div>
                 <div class="2xl:flex xl:flex lg:flex md:block sm:block items-center justify-between mt-2">
                     <div class="2xl:flex xl:flex lg:flex md:flex sm:block">
@@ -11,14 +11,14 @@
                             <CategoryButton :class="{ 'bg-sky-500 span-white': international === 'XALQARO' }" @click="() => {
                                 international = 'XALQARO'
                             }" class="ml-5 btn-category">
-                                Xalqaro
+                                {{ langtext[$route.params.lan].publications.publicationsInternational }}
                             </CategoryButton>
                         </div>
                         <div>
                             <CategoryButton :class="{ 'bg-sky-500 span-white': international === 'MILLIY' }" @click="() => {
                                 international = 'MILLIY'
                             }" class="ml-5 btn-category">
-                                Milliy
+                                {{ langtext[$route.params.lan].publications.publicationsNational }}
                             </CategoryButton>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                                 @click="isOptionsExpanded = !isOptionsExpanded" @blur="isOptionsExpanded = false">
                                 <span class="text-sm opacity-50">
                                     <span v-if="international === 'all'">
-                                        Barcha yo'nalishlar
+                                        {{ langtext[$route.params.lan].publications.publicationsFilterHeading }}
                                     </span>
                                     <span v-else>
                                         {{ international }}
@@ -53,7 +53,7 @@
                                     <li @mousedown="() => {
                                         international = 'all'
                                     }" class="px-3 py-2 text-sm duration-300 hover:bg-gray-200">
-                                        Barchasi
+                                        {{ langtext[$route.params.lan].publications.publicationsFilterAll }}
                                     </li>
                                     <li v-for="researchData in researchCategory " :key="researchData.id"
                                         class="px-3 py-2 text-sm duration-300 hover:bg-gray-200" @mousedown="() => {
@@ -70,10 +70,11 @@
                 </div>
             </Box>
             <div class="grid 2xl:grid-cols-4 xl:grid-cols-4 lg:grid-cols-4 gap-4 md:grid-cols-2 sm:grid-cols-2">
-                <router-link v-for="data in research" :key="data.id"
-                    class="" :to="`news/${data.id}`">
-                   <div class="research__box bg-white  h-80 shadow-md hover:shadow-lg sm:m-auto" v-if="data.area === international || international === 'all' || international === data.category" :class="{'h1-hidden' : data.category.length === 0}">
-                     <img class="research-img" :src="`${data.image_url}`" alt="">
+                <router-link v-for="data in research" :key="data.id" class="" :to="`news/${data.id}`">
+                    <div class="research__box bg-white  h-80 shadow-md hover:shadow-lg sm:m-auto"
+                        v-if="data.area === international || international === 'all' || international === data.category"
+                        :class="{ 'h1-hidden': data.category.length === 0 }">
+                        <img class="research-img" :src="`${data.image_url}`" alt="">
                         <div class="backdrop-blur h-16 blur-bg flex items-center justify-around">
                             <div class="">
                                 <i class="fa-regular fa-eye fa-lg" style="color: #ffffff;"></i>
@@ -86,51 +87,54 @@
                         </div>
                         <p class="research-link__title">{{ data.title.substring(0, 47) }}...</p>
                         <span class="research-link_span">{{ data.description.substring(0, 79) }}...</span>
-                   </div>
+                    </div>
                 </router-link>
                 <div class="hidden">
                     <h1>Info yo'q</h1>
                 </div>
             </div>
-              <div class="flex items-center justify-between bg-white px-4 py-3 sm:px-6">
+            <div class="flex items-center justify-between bg-white px-4 py-3 sm:px-6">
 
-                    <div class="sm:flex sm:flex-1 sm:items-center sm:justify-end">
+                <div class="sm:flex sm:flex-1 sm:items-center sm:justify-end">
 
-                        <div>
-                            <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
-                                <a @click="$emit('onChangePrev')"
-                                    class="relative cursor-pointer inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-                                    <span class="sr-only">Previous</span>
-                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                        <path fill-rule="evenodd"
-                                            d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </a>
-                                <!-- Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" -->
-                                <a v-for="pageNumber in total_pages " :key="pageNumber"
-                                    :class="{ 'bg-sky-700 span-white': pageNumber == page }" @click="$emit('onChangePage', pageNumber)"
-                                    class="relative z-10 cursor-pointer inline-flex items-center bg-white-600 px-4 py-2 text-sm font-semibold text-sky-600 focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:out   line-sky-600 border">{{
-                                        pageNumber }}</a>
-                                <a @click="$emit('onChangeNext')"
-                                    class="relative cursor-pointer inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                        <path fill-rule="evenodd"
-                                            d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </a>
-                            </nav>
-                        </div>
+                    <div>
+                        <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+                            <a @click="$emit('onChangePrev')"
+                                class="relative cursor-pointer inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                                <span class="sr-only">Previous</span>
+                                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                            <!-- Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" -->
+                            <a v-for="pageNumber in total_pages " :key="pageNumber"
+                                :class="{ 'bg-sky-700 span-white': pageNumber == page }"
+                                @click="$emit('onChangePage', pageNumber)"
+                                class="relative z-10 cursor-pointer inline-flex items-center bg-white-600 px-4 py-2 text-sm font-semibold text-sky-600 focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:out   line-sky-600 border">{{
+                                    pageNumber }}</a>
+                            <a @click="$emit('onChangeNext')"
+                                class="relative cursor-pointer inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        </nav>
                     </div>
                 </div>
+            </div>
         </div>
     </section>
 </template>
 <script>
 import { RouterLink } from 'vue-router';
+import { Lang } from '../Lan/Lan';
+
 export default {
-   props: {
+    props: {
         researchCategory: {
             type: Array,
             required: true
@@ -154,7 +158,8 @@ export default {
             selectedOption: "1x",
             options: ["1x", "2x", "3x", "4x or more"],
             international: "all",
-            filterSelect: "Barcha yo'nalishlar"
+            filterSelect: "Barcha yo'nalishlar",
+            langtext: Lang,
         };
     },
     methods: {
@@ -175,7 +180,7 @@ export default {
     margin-bottom: 30px
 }
 
-.h1-hidden{
+.h1-hidden {
     display: block !important
 }
 
@@ -189,7 +194,7 @@ export default {
     object-fit: cover
 }
 
-.research-link__title{
+.research-link__title {
     font-family: "Poppins";
     font-weight: 600;
     color: #161c27;
@@ -202,7 +207,7 @@ export default {
     line-height: 20px !important;
 }
 
-.research-link_span{
+.research-link_span {
     font-size: 14px;
     color: #73777d;
     font-family: "Poppins";
@@ -213,20 +218,20 @@ export default {
     position: absolute;
 }
 
-.blur-bg{
+.blur-bg {
     margin-top: -60px !important
 }
 
-.backdrop-blur p{
+.backdrop-blur p {
     font-family: "Poppins";
     font-weight: 400;
 }
 
-.span-white{
+.span-white {
     color: white !important
 }
 
-.span-white:hover{
+.span-white:hover {
     color: white !important
 }
 
@@ -255,21 +260,21 @@ export default {
         margin-top: 20px
     }
 
-    .research__box{
+    .research__box {
         width: 400px !important;
     }
 
-    .research-img{
+    .research-img {
         width: 400px !important
     }
 }
 
 @media only screen and (max-width: 600px) {
-    .container{
+    .container {
         width: 500px !important;
     }
 
-       .select {
+    .select {
         width: 300px !important;
         margin-top: 20px;
         margin-left: 20px !important
@@ -281,19 +286,20 @@ export default {
         margin-top: 20px
     }
 }
+
 @media only screen and (max-width: 500px) {
-    .container{
+    .container {
         width: 400px !important;
     }
 
-    .research_box{
+    .research_box {
         margin: 0 auto !important;
         margin-top: 20px !important;
     }
 
-    .research{
+    .research {
         background-color: transparent;
-        
+
     }
 }
 </style>

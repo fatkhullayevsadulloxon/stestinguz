@@ -19,7 +19,8 @@
                         <div class="responsive-menu">
                             <ul class="hamburger__list ms-6 w-full">
                                 <li class="hamburger__item" v-for="data in headerdata" :key="data.id">
-                                    <router-link class="hamburger__link" :to="`${$route.params.lan}/${data.url}`">{{ data.title
+                                    <router-link class="hamburger__link" :to="`/${$route.params.lan}/${data.url}`">{{
+                                        data.title
                                     }}</router-link>
                                 </li>
                                 <li class="item dropdown-item">
@@ -97,9 +98,10 @@
                         </li>
                     </ul>
                 </nav>
+
                 <router-link to="/login">
                     <PrimaryButton>
-                        Kirish
+                        {{ langtext[$route.params.lan].homePage.LoginBtn }}
                     </PrimaryButton>
                 </router-link>
             </div>
@@ -111,6 +113,7 @@
 import { RouterLink, RouterView } from 'vue-router';
 import axios from "axios"
 import PrimaryButton from "../../ui-components/PrimaryButton.vue";
+import { Lang } from '../Lan/Lan';
 
 export default {
     props: {
@@ -127,13 +130,16 @@ export default {
             required: false
         },
     },
+
     data() {
         return {
             isOpen: false,
             active: "none",
+            langtext: Lang,
         };
     },
-    components: { PrimaryButton }
+    components: { PrimaryButton },
+
 }
 </script>
 <style scoped>
@@ -190,7 +196,7 @@ export default {
 }
 
 .router-link-active {
-    color: #007bff  
+    color: #007bff
 }
 
 

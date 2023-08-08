@@ -2,15 +2,17 @@
     <section class="about my-20">
         <div class="container about__container flex items-center justify-between">
             <div class="about-headings__box">
-                <h3 class="about__heading">Stesting</h3>
-                <h3 class="about__heading">loyihasi haqida</h3>
-                <h3 class="about__heading2 hidden">Stesting loyihasi haqida</h3>
+                <h3 class="about__heading">
+                    {{ langtext[$route.params.lan].homePage.aboutHeading1 }}
+                </h3>
+                <h3 class="about__heading">{{ langtext[$route.params.lan].homePage.aboutHeading2 }}</h3>
+                <h3 class="about__heading2 hidden">{{ langtext[$route.params.lan].homePage.aboutHeading1  }}</h3>
                 <img class="about__img" src="https://stesting.uz/wrap2.png" alt="" width="90" height="27">
             </div>
             <p class="about__desc opacity-75">{{ short_description }}</p>
             <router-link :to="`${$route.params.lan}/about`">
                 <PrimaryButton class="my-5">
-                    Batafsil
+                    {{langtext[$route.params.lan].homePage.aboutBtn }}
                 </PrimaryButton>
             </router-link>
         </div>
@@ -19,6 +21,8 @@
 <script>
 import PrimaryButton from '../../ui-components/PrimaryButton.vue';
 import { RouterLink, RouterView } from 'vue-router';
+import { Lang } from '../Lan/Lan';
+
 export default {
     props: {
         short_description: {
@@ -28,6 +32,12 @@ export default {
         statistics: {
             type: Object,
             required: true
+        }
+    },
+
+    data() {
+        return {
+            langtext: Lang,
         }
     },
     components: { PrimaryButton }
@@ -54,6 +64,7 @@ export default {
     font-weight: 600;
     line-height: 35px !important;
 }
+
 .about__heading2 {
     font-family: 'Poppins', sans-serif;
     font-size: 32px;
@@ -62,35 +73,36 @@ export default {
     line-height: 35px !important;
 }
 
-.about__img{
+.about__img {
     margin-left: 120px
 }
 
 @media only screen and (max-width: 1020px) {
-    .about__heading{
-        font-size: 26px !important; 
+    .about__heading {
+        font-size: 26px !important;
     }
 
-    .about__desc{
+    .about__desc {
         font-size: 14px
     }
 }
 
 @media only screen and (max-width: 770px) {
-    .about__container{
+    .about__container {
         display: block
-    }   
+    }
 
-    .about__heading{
+    .about__heading {
         display: none;
         font-size: 26px !important;
     }
 
-    .about__heading2{
+    .about__heading2 {
         display: block;
         font-size: 26px !important;
-        
+
     }
+
     .container {
         width: 500px !important;
         margin: 0 auto
@@ -102,7 +114,7 @@ export default {
         width: 450px !important
     }
 
-    .about__desc{
+    .about__desc {
         font-size: 14px
     }
 }
@@ -117,9 +129,9 @@ export default {
     .header__btn {
         padding: 8px 28px !important;
     }
-    .nav-hamburger-img{
+
+    .nav-hamburger-img {
         width: 30px !important;
         height: 30px !important;
     }
-}
-</style>
+}</style>

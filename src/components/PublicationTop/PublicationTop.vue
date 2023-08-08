@@ -3,22 +3,22 @@
         <div class="container publication__container">
             <Box>
                 <div class="publicaton-top__left pt-7 ms-5">
-                    <span class="text-4xl font-semibold">Nashrlar</span>
+                    <span class="text-4xl font-semibold">{{ langtext[$route.params.lan].publications.publicationsHeading }}</span>
                 </div>
                 <div class="2xl:flex xl:flex lg:flex md:block sm:block items-center justify-between mt-2">
                     <div class="2xl:flex xl:flex lg:flex md:flex sm:block">
                         <div>
-                            <CategoryButton :class="{ 'bg-sky-500 span-white': international === 'XALQARO' }"  @click="() => {
+                            <CategoryButton :class="{ 'bg-sky-500 span-white': international === 'XALQARO' }" @click="() => {
                                 international = 'XALQARO'
                             }" class="ml-5 btn-category">
-                                    Xalqaro
-                                </CategoryButton>
+                                {{ langtext[$route.params.lan].publications.publicationsInternational }}
+                            </CategoryButton>
                         </div>
                         <div>
                             <CategoryButton :class="{ 'bg-sky-500 span-white': international === 'MILLIY' }" @click="() => {
                                 international = 'MILLIY'
                             }" class="ml-5 btn-category">
-                                Milliy
+                                {{ langtext[$route.params.lan].publications.publicationsNational }}
                             </CategoryButton>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                                 @click="isOptionsExpanded = !isOptionsExpanded" @blur="isOptionsExpanded = false">
                                 <span class="text-sm opacity-50">
                                     <span v-if="international === 'all'">
-                                        Barcha yo'nalishlar
+                                        {{ langtext[$route.params.lan].publications.publicationsFilterHeading }}
                                     </span>
                                     <span v-else>
                                         {{ international }}
@@ -58,7 +58,7 @@
                                     <li @mousedown="() => {
                                         international = 'all'
                                     }" class="px-3 py-2 text-sm duration-300 hover:bg-gray-200">
-                                        Barchasi
+                                        {{ langtext[$route.params.lan].publications.publicationsFilterAll }}
                                     </li>
                                     <li v-for=" publicData  in  publicationCategory " :key="publicData.id"
                                         class="px-3 py-2 text-sm duration-300 hover:bg-gray-200" @mousedown="() => {
@@ -106,7 +106,8 @@
                             </a>
                             <!-- Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" -->
                             <a v-for=" pageNumber  in  total_pages " :key="pageNumber"
-                                :class="{ 'bg-sky-700 span-white': pageNumber == page }" @click="$emit('onChangePage', pageNumber)"
+                                :class="{ 'bg-sky-700 span-white': pageNumber == page }"
+                                @click="$emit('onChangePage', pageNumber)"
                                 class="relative z-10 cursor-pointer inline-flex items-center bg-white-600 px-4 py-2 text-sm font-semibold text-sky-600 focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:out   line-sky-600 border">{{
                                     pageNumber }}</a>
                             <a @click="$emit('onChangeNext')"
@@ -127,6 +128,8 @@
 <script>
 import Card from '../../ui-components/Card.vue';
 import CategoryButton from '../../ui-components/CategoryButton.vue';
+import { Lang } from '../Lan/Lan';
+
 
 export default {
     components: { CategoryButton, Card },
@@ -154,7 +157,9 @@ export default {
             selectedOption: "1x",
             options: ["1x", "2x", "3x", "4x or more"],
             international: "all",
-            filterSelect: "Barcha yo'nalishlar"
+            filterSelect: "Barcha yo'nalishlar",
+            langtext: Lang,
+
         };
     },
     methods: {
@@ -207,11 +212,11 @@ img {
     margin-top: 20px !important
 }
 
-.span-white{
+.span-white {
     color: white !important
 }
 
-.span-white:hover{
+.span-white:hover {
     color: white !important
 }
 

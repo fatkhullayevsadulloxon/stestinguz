@@ -3,7 +3,7 @@
         <div class="container publication__container">
             <Box>
                 <div class="publicaton-top__left pt-7 ms-5">
-                    <span class="text-4xl font-semibold">Nashrlar</span>
+                    <span class="text-4xl font-semibold">{{ langtext[$route.params.lan].videocourse.videocourseHeading }}</span>
                 </div>
                 <div class="2xl:flex xl:flex lg:flex md:block sm:block items-center justify-between mt-2">
                     <div class="2xl:flex xl:flex lg:flex md:flex sm:block">
@@ -12,7 +12,7 @@
                                 @click="() => {
                                     international = 'O\'quvchilar uchun'
                                 }" class="ml-5 btn-category">
-                                O'quvchilar uchun
+                                {{ langtext[$route.params.lan].videocourse.videocourseForStudents }}
                             </CategoryButton>
                         </div>
                         <div>
@@ -20,7 +20,7 @@
                                 @click="() => {
                                     international = 'O\'qituvchilar uchun'
                                 }" class="ml-5 btn-category">
-                                O'qituvchilar uchun
+                                {{ langtext[$route.params.lan].videocourse.videocourseForTeachers }}
                             </CategoryButton>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                                 @click="isOptionsExpanded = !isOptionsExpanded" @blur="isOptionsExpanded = false">
                                 <span class="text-sm opacity-50">
                                     <span v-if="international === 'all'">
-                                        Barcha yo'nalishlar
+                                        {{ langtext[$route.params.lan].publications.publicationsFilterHeading }}
                                     </span>
                                     <span v-else>
                                         {{ international }}
@@ -55,7 +55,7 @@
                                     <li @mousedown="() => {
                                         international = 'all'
                                     }" class="px-3 py-2 text-sm duration-300 hover:bg-gray-200">
-                                        Barchasi
+                                         {{ langtext[$route.params.lan].publications.publicationsFilterAll }}
                                     </li>
                                     <li v-for=" videoCourseCategoryData in videoCourseCategory "
                                         :key="videoCourseCategoryData.id"
@@ -116,10 +116,9 @@
                                 </svg>
                             </a>
                             <!-- Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" -->
-                            <div v-for="pageNumber in total_pages " :key="pageNumber"
-                                >
+                            <div v-for="pageNumber in total_pages " :key="pageNumber">
 
-                                <a  v-if="pageNumber < page + 3 && pageNumber > page - 3 || (page < 5 && pageNumber <= 5)"
+                                <a v-if="pageNumber < page + 3 && pageNumber > page - 3 || (page < 5 && pageNumber <= 5)"
                                     @click="$emit('onChangePage', pageNumber)"
                                     :class="{ 'bg-sky-700 span-white': pageNumber == page }"
                                     class="relative z-10 cursor-pointer inline-flex items-center bg-white-600 px-4 py-2 text-sm font-semibold text-sky-600 focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:out   line-sky-600 border">{{
@@ -144,6 +143,7 @@
 <script>
 import Card from '../../ui-components/Card.vue';
 import CategoryButton from '../../ui-components/CategoryButton.vue';
+import { Lang } from '../Lan/Lan';
 
 export default {
     components: { CategoryButton, Card, },
@@ -173,7 +173,9 @@ export default {
             international: "all",
             filterSelect: "Barcha yo'nalishlar",
             isOpen: true,
-            pagination: "..."
+            pagination: "...",
+            langtext: Lang,
+
         };
     },
 
@@ -307,7 +309,7 @@ img {
         margin-top: 20px
     }
 
-    .main-video__container{
+    .main-video__container {
         margin-left: -10px
     }
 }

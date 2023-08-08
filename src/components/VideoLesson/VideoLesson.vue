@@ -4,11 +4,12 @@
             class="container 2xl:flex xl:flex lg:flex md:block sm:block justify-between video-lesson__container lg:bg-[url('https://stesting.uz/playerbg.png')] bg-no-repeat bg-left-top sm:bg-none">
             <iframe class="iframe" width="500" height="315" :src="`${main_video.video}`" />
             <div class="video-lesson__right">
-                <p class="text-4xl font-semibold mt-10 video-lesson__heading">Videodarslar</p>
-                <p class="max-w-md text-lg font-normal opacity-50 video-lesson__desc">Foydalanuvchilarga qulaylik yaratish
-                    maqsadida Stesting loyihasida videodarsliklar ham joylashtirilgan </p>
+                <p class="text-4xl font-semibold mt-10 video-lesson__heading">{{
+                    langtext[$route.params.lan].homePage.videoCourseHeading }}</p>
+                <p class="max-w-md text-lg font-normal opacity-50 video-lesson__desc">{{
+                    langtext[$route.params.lan].homePage.videoCourseDesc }}</p>
                 <PrimaryButton class="mt-10" to="/uz/tutorials">
-                    Barcha videolar
+                    {{ langtext[$route.params.lan].homePage.videoCourseBtn }}
                 </PrimaryButton>
             </div>
         </div>
@@ -16,6 +17,8 @@
 </template>
 <script>
 import PrimaryButton from '../../ui-components/PrimaryButton.vue';
+import { Lang } from '../Lan/Lan';
+
 
 export default {
     components: { PrimaryButton },
@@ -24,7 +27,12 @@ export default {
             type: Object,
             required: true
         }
-    }
+    },
+    data() {
+        return {
+            langtext: Lang,
+        }
+    },
 }
 </script>
 <style scoped>
@@ -50,13 +58,13 @@ export default {
         width: 500px !important;
     }
 
-    .iframe{
+    .iframe {
         width: 400px !important;
     }
 }
 
 @media only screen and (max-width: 500px) {
-    .container{
+    .container {
         width: 400px !important;
     }
 }

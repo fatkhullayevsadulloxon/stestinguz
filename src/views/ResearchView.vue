@@ -21,7 +21,7 @@ export default {
       methods: {
         async fetchResearchCategory() {
             try {
-                const { data } = await axios.get('http://qlapi.stesting.uz/api/v1/research/research-category', {
+                const { data } = await axios.get('http://qlapi.stesting.uz/api/v1/research/research-category/', {
                     headers: {
                         'Content-Type': 'application/json'
                     },
