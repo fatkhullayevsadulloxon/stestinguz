@@ -6,6 +6,7 @@ import ResearchView from '../views/ResearchView.vue'
 import AboutView from '../views/AboutView.vue'
 import SingleResearch from '../views/SingleResearchView.vue'
 import GuideView from '../views/GuideView.vue'
+import Login from '../components/Login/Login.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -48,6 +49,11 @@ const router = createRouter({
       path: '/:lan/guide',
       name: 'guide',
       component: GuideView
+    },
+    {
+      path: '/:lan/login',
+      name: 'login',
+      component: Login
     },
     {
       path: '/:lan/news/:id',

@@ -13,7 +13,7 @@
                             <a @click="() => {
                                 currentVideo = guideData
                             }" class="guide__list-link" href="#!" :class="{ 'active': currentVideo === guideData }">{{
-    guideData.title }}</a>
+                            guideData.title }}</a>
                             <hr class="hr">
                         </li>
                     </ul>

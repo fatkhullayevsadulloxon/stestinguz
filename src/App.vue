@@ -2,8 +2,10 @@
   <div>
     <Header :headerdata="dataArr1.list" :logo="dataArr1.logo" :fetchFunc="fetchHeader" />
     <router-view />
-    <FooterSection :footerinfo="footerinfo" />
-    <FooterBottom :footerinfo="footerinfo" :headerdata="dataArr1.list" />
+    <div style="margin-top: 200px !important;">
+      <FooterSection :footerinfo="footerinfo" />
+      <FooterBottom :footerinfo="footerinfo" :headerdata="dataArr1.list" />
+    </div>
     <a class="2xl:block xl:block lg:block md:hidden sm:hidden" href="https://avloniy.uz/uz" target="_blank">
       <img class="tranform-default bg-white p-5 shadow-lg rounded"  src="https://onlinedu.uz/images/assets/logo.png" alt=""
         width="220" height="40">

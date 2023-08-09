@@ -99,7 +99,7 @@
                     </ul>
                 </nav>
 
-                <router-link to="/login">
+                <router-link :to="`/${$route.params.lan}/login`">
                     <PrimaryButton>
                         {{ langtext[$route.params.lan].homePage.LoginBtn }}
                     </PrimaryButton>
